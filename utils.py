@@ -579,7 +579,7 @@ def plot_results_single(size_te, files, title=None, folder='/content/drive/MyDri
     plt.show()
     return
 
-def plot_results_compare(size_te, *results, folder='/content/drive/MyDrive/GraphoVerse/NezNet/images'):
+def plot_results_compare(size_te, *results, titles = None, saveto=None):
     ''' plot results of metrics, of different files '''
 
     from sklearn.metrics import roc_curve, auc
@@ -651,11 +651,15 @@ def plot_results_compare(size_te, *results, folder='/content/drive/MyDrive/Graph
         ax[j].patch.set_linewidth('1')
         ax[j].set_ylim([0.4,1.2])
         ax[j].set_xlim([0.4,1.2])
+        if titles is not None:
+            ax[j].set_title(titles[j], fontsize='xx-large')
+        else:
+            pass
 
-    #plt.savefig(folder+'/results_dz.eps',dpi=150, layout='tight', format='eps')
+    if saveto is not None:
+        plt.savefig(saveto, dpi=150, layout='tight')
     plt.show()
     return
-
 
 def plot_Dz_gradients(*list_weights, folder ='/content/drive/MyDrive/GraphoVerse/NezNet/'):
     ''' compare nearest neighbours gradients for the same model, with different Dz '''
