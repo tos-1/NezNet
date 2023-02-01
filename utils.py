@@ -635,12 +635,13 @@ def plot_results_compare(size_te, *results, titles = None, saveto=None):
         abs_bias, bias, outs, prec = z_metrics( tz[sc>th], nz[sc>th])
 
         textstr = '\n'.join((
-            r'$\mathrm{fr}=%.3f$' % (frac, ),
-            r'$\mathrm{out}=%.4f$' % (outs, ),
+            r'$\sigma=%.3f$' % (prec, ),
+            r'$\mathrm{out}=%.2f$ %%' % (outs*100, ),
             r'$|\mathrm{b}|=%.3f$' % (abs_bias, ),
             r'$\mathrm{b}=%.4f$' % (bias, ),
-            r'$\mathrm{prec}=%.3f$' % (prec, ),)
+            r'$\mathrm{fr}=%.1f$ %%' % (frac*100, ),)
         )
+
         props = dict(boxstyle='round', facecolor='white', alpha=0.5)
         ax[j].text(0.05, 0.95, textstr, transform=ax[j].transAxes, fontsize=14,
           verticalalignment='top', bbox=props)
